@@ -1,0 +1,41 @@
+*{
+  box-sizing: border-box;
+}
+
+.friend-list-wrapper{
+  width: 300px;
+  margin: 0 auto;
+  box-shadow: 0px 2px 10px 0px #757070;
+}
+
+.friend-list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.friend-list__item{
+  display: flex;
+  padding: 20px;
+  border-bottom: 1px solid gray
+}
+
+.friend-list__data{
+  padding: 20px;
+  padding-right: 0;
+}
+
+.friend-list__name{
+  margin-bottom: 20px;
+}
+
+.friend-list__img{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.friend-list__search-field{
+  width: 100%;
+  padding: 10px;
+}
