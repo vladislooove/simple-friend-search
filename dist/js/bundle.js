@@ -9570,63 +9570,20 @@ var friends = [{
   id: '3'
 }];
 
-var FriendListItem = function (_React$Component) {
-  _inherits(FriendListItem, _React$Component);
-
-  function FriendListItem() {
-    _classCallCheck(this, FriendListItem);
-
-    return _possibleConstructorReturn(this, (FriendListItem.__proto__ || Object.getPrototypeOf(FriendListItem)).apply(this, arguments));
-  }
-
-  _createClass(FriendListItem, [{
-    key: 'removeFriend',
-    value: function removeFriend(e) {
-      console.log(this);
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'li',
-        { className: 'friend-list__item' },
-        _react2.default.createElement('img', { className: 'friend-list__img',
-          src: this.props.img }),
-        _react2.default.createElement(
-          'div',
-          { className: 'friend-list__data' },
-          _react2.default.createElement(
-            'div',
-            { className: 'friend-list__name' },
-            this.props.name
-          ),
-          _react2.default.createElement(
-            'a',
-            { className: 'friend-list__tel', href: 'tel:' + this.props.tel.slice(1) },
-            this.props.tel
-          )
-        ),
-        _react2.default.createElement('button', { className: 'friend-list__remove',
-          onClick: this.removeFriend.bind(this) })
-      );
-    }
-  }]);
-
-  return FriendListItem;
-}(_react2.default.Component);
-
-var FriendList = function (_React$Component2) {
-  _inherits(FriendList, _React$Component2);
+var FriendList = function (_React$Component) {
+  _inherits(FriendList, _React$Component);
 
   function FriendList(props) {
     _classCallCheck(this, FriendList);
 
-    var _this2 = _possibleConstructorReturn(this, (FriendList.__proto__ || Object.getPrototypeOf(FriendList)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (FriendList.__proto__ || Object.getPrototypeOf(FriendList)).call(this, props));
 
-    _this2.state = {
+    _this.state = {
       displayedFriends: friends
     };
-    return _this2;
+    _this.filterFriends = _this.filterFriends.bind(_this);
+    _this.removeFriend = _this.removeFriend.bind(_this);
+    return _this;
   }
 
   _createClass(FriendList, [{
@@ -9641,6 +9598,12 @@ var FriendList = function (_React$Component2) {
       this.setState({ displayedFriends: displayedFriends });
     }
   }, {
+    key: 'removeFriend',
+    value: function removeFriend() {
+      var target = this;
+      console.log(target);
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -9648,16 +9611,35 @@ var FriendList = function (_React$Component2) {
         { className: 'friend-list-wrapper' },
         _react2.default.createElement('input', { type: 'text',
           className: 'friend-list__search-field',
-          onChange: this.filterFriends.bind(this) }),
+          onChange: this.filterFriends }),
         _react2.default.createElement(
           'ul',
           { className: 'friend-list' },
           this.state.displayedFriends.map(function (el) {
-            return _react2.default.createElement(FriendListItem, { key: el.id,
-              name: el.name,
-              tel: el.tel,
-              img: el.img });
-          })
+            return _react2.default.createElement(
+              'li',
+              { className: 'friend-list__item',
+                key: el.id },
+              _react2.default.createElement('img', { className: 'friend-list__img',
+                src: el.img }),
+              _react2.default.createElement(
+                'div',
+                { className: 'friend-list__data' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'friend-list__name' },
+                  el.name
+                ),
+                _react2.default.createElement(
+                  'a',
+                  { className: 'friend-list__tel', href: 'tel:' + el.tel.slice(1) },
+                  el.tel
+                )
+              ),
+              _react2.default.createElement('button', { className: 'friend-list__remove',
+                onClick: this.removeFriend })
+            );
+          }, this)
         )
       );
     }

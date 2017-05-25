@@ -25,28 +25,6 @@ var friends = [
   }
 ];
 
-class FriendListItem extends React.Component{
-
-  removeFriend(e){
-    console.log(this);
-  }
-
-  render() {
-    return (
-      <li className='friend-list__item'>
-        <img className="friend-list__img"
-             src={this.props.img} />
-        <div className="friend-list__data">
-          <div className='friend-list__name'>{this.props.name}</div>
-          <a className="friend-list__tel" href={`tel:${this.props.tel.slice(1)}`}>{this.props.tel}</a>
-        </div>
-        <button className="friend-list__remove"
-                onClick={this.removeFriend.bind(this)}></button>
-      </li>
-    );
-  }
-}
-
 class FriendList extends React.Component{
 
   constructor(props) {
@@ -54,6 +32,8 @@ class FriendList extends React.Component{
     this.state = {
       displayedFriends: friends
     };
+    this.filterFriends = this.filterFriends.bind(this);
+    this.removeFriend = this.removeFriend.bind(this);
   }
 
   filterFriends(e){
@@ -66,20 +46,34 @@ class FriendList extends React.Component{
     this.setState({displayedFriends: displayedFriends})
   }
 
+  removeFriend(){
+    var target = this;
+    console.log(target);
+  }
+
   render(){
     return(
       <div className="friend-list-wrapper">
         <input type="text"
                className="friend-list__search-field"
-               onChange={this.filterFriends.bind(this)} />
+               onChange={this.filterFriends} />
         <ul className="friend-list">
           {
             this.state.displayedFriends.map(function(el){
-              return <FriendListItem  key={el.id}
-                                      name={el.name}
-                                      tel={el.tel}
-                                      img ={el.img} />
-            })
+              return (
+                <li className='friend-list__item'
+                    key={el.id}>
+                  <img className="friend-list__img"
+                       src={el.img} />
+                  <div className="friend-list__data">
+                    <div className='friend-list__name'>{el.name}</div>
+                    <a className="friend-list__tel" href={`tel:${el.tel.slice(1)}`}>{el.tel}</a>
+                  </div>
+                  <button className="friend-list__remove"
+                          onClick={this.removeFriend}></button>
+                </li>
+              );
+            }, this)
           }
         </ul>
       </div>
