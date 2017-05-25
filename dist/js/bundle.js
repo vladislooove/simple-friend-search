@@ -9582,7 +9582,6 @@ var FriendList = function (_React$Component) {
       displayedFriends: friends
     };
     _this.filterFriends = _this.filterFriends.bind(_this);
-    _this.removeFriend = _this.removeFriend.bind(_this);
     return _this;
   }
 
@@ -9599,9 +9598,14 @@ var FriendList = function (_React$Component) {
     }
   }, {
     key: 'removeFriend',
-    value: function removeFriend() {
-      var target = this;
-      console.log(target);
+    value: function removeFriend(el) {
+      var displayedFriends = this.state.displayedFriends;
+      if (displayedFriends.indexOf(el) > -1) {
+        displayedFriends.splice(displayedFriends.indexOf(el), 1);
+        console.log(displayedFriends);
+
+        this.setState({ displayedFriends: displayedFriends });
+      }
     }
   }, {
     key: 'render',
@@ -9637,7 +9641,7 @@ var FriendList = function (_React$Component) {
                 )
               ),
               _react2.default.createElement('button', { className: 'friend-list__remove',
-                onClick: this.removeFriend })
+                onClick: this.removeFriend.bind(this, el) })
             );
           }, this)
         )

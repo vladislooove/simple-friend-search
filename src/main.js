@@ -33,7 +33,6 @@ class FriendList extends React.Component{
       displayedFriends: friends
     };
     this.filterFriends = this.filterFriends.bind(this);
-    this.removeFriend = this.removeFriend.bind(this);
   }
 
   filterFriends(e){
@@ -46,9 +45,14 @@ class FriendList extends React.Component{
     this.setState({displayedFriends: displayedFriends})
   }
 
-  removeFriend(){
-    var target = this;
-    console.log(target);
+  removeFriend(el){
+    var displayedFriends = this.state.displayedFriends;
+    if(displayedFriends.indexOf(el) > -1){
+      displayedFriends.splice(displayedFriends.indexOf(el), 1);
+      console.log(displayedFriends);
+
+      this.setState({displayedFriends: displayedFriends});
+    }
   }
 
   render(){
@@ -70,7 +74,7 @@ class FriendList extends React.Component{
                     <a className="friend-list__tel" href={`tel:${el.tel.slice(1)}`}>{el.tel}</a>
                   </div>
                   <button className="friend-list__remove"
-                          onClick={this.removeFriend}></button>
+                          onClick={this.removeFriend.bind(this, el)}></button>
                 </li>
               );
             }, this)
