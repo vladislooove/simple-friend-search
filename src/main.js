@@ -25,8 +25,9 @@ var friends = [
   }
 ];
 
-var FriendListItem = React.createClass({
-  render: function() {
+class FriendListItem extends React.Component{
+
+  render() {
     return (
       <li className='friend-list__item'>
         <img className="friend-list__img"
@@ -38,15 +39,18 @@ var FriendListItem = React.createClass({
       </li>
     );
   }
-});
+}
 
-var FriendList = React.createClass({
-  getInitialState: function(){
-    return {
+class FriendList extends React.Component{
+
+  constructor(props) {
+    super(props);
+    this.state = {
       displayedFriends: friends
-    } 
-  },
-  filterFriends: function(e){
+    };
+  }
+
+  filterFriends(e){
     var searchQuery = e.target.value.toLowerCase();
     var displayedFriends = friends.filter(function(item){
       var searchValue = item.name.toLowerCase();
@@ -54,8 +58,9 @@ var FriendList = React.createClass({
     });
 
     this.setState({displayedFriends: displayedFriends})
-  },
-  render: function(){
+  }
+
+  render(){
     return(
       <div className="friend-list-wrapper">
         <input type="text"
@@ -74,6 +79,6 @@ var FriendList = React.createClass({
       </div>
     );
   }
-});
+}
 
-ReactDOM.render(<FriendList />, document.querySelector('#root'));
+ReactDOM.render(<FriendList />, document.querySelector('#root'))

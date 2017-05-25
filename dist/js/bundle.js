@@ -9530,6 +9530,8 @@ module.exports = __webpack_require__(19);
 "use strict";
 
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(81);
 
 var _react2 = _interopRequireDefault(_react);
@@ -9539,6 +9541,12 @@ var _reactDom = __webpack_require__(80);
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var friends = [{
   name: 'Петр Порох',
@@ -9562,70 +9570,94 @@ var friends = [{
   id: '3'
 }];
 
-var FriendListItem = _react2.default.createClass({
-  displayName: 'FriendListItem',
+var FriendListItem = function (_React$Component) {
+  _inherits(FriendListItem, _React$Component);
 
-  render: function render() {
-    return _react2.default.createElement(
-      'li',
-      { className: 'friend-list__item' },
-      _react2.default.createElement('img', { className: 'friend-list__img',
-        src: this.props.img }),
-      _react2.default.createElement(
-        'div',
-        { className: 'friend-list__data' },
+  function FriendListItem() {
+    _classCallCheck(this, FriendListItem);
+
+    return _possibleConstructorReturn(this, (FriendListItem.__proto__ || Object.getPrototypeOf(FriendListItem)).apply(this, arguments));
+  }
+
+  _createClass(FriendListItem, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'li',
+        { className: 'friend-list__item' },
+        _react2.default.createElement('img', { className: 'friend-list__img',
+          src: this.props.img }),
         _react2.default.createElement(
           'div',
-          { className: 'friend-list__name' },
-          this.props.name
-        ),
-        _react2.default.createElement(
-          'a',
-          { className: 'friend-list__tel', href: 'tel:' + this.props.tel.slice(1) },
-          this.props.tel
+          { className: 'friend-list__data' },
+          _react2.default.createElement(
+            'div',
+            { className: 'friend-list__name' },
+            this.props.name
+          ),
+          _react2.default.createElement(
+            'a',
+            { className: 'friend-list__tel', href: 'tel:' + this.props.tel.slice(1) },
+            this.props.tel
+          )
         )
-      )
-    );
-  }
-});
+      );
+    }
+  }]);
 
-var FriendList = _react2.default.createClass({
-  displayName: 'FriendList',
+  return FriendListItem;
+}(_react2.default.Component);
 
-  getInitialState: function getInitialState() {
-    return {
+var FriendList = function (_React$Component2) {
+  _inherits(FriendList, _React$Component2);
+
+  function FriendList(props) {
+    _classCallCheck(this, FriendList);
+
+    var _this2 = _possibleConstructorReturn(this, (FriendList.__proto__ || Object.getPrototypeOf(FriendList)).call(this, props));
+
+    _this2.state = {
       displayedFriends: friends
     };
-  },
-  filterFriends: function filterFriends(e) {
-    var searchQuery = e.target.value.toLowerCase();
-    var displayedFriends = friends.filter(function (item) {
-      var searchValue = item.name.toLowerCase();
-      return searchValue.indexOf(searchQuery) !== -1;
-    });
-
-    this.setState({ displayedFriends: displayedFriends });
-  },
-  render: function render() {
-    return _react2.default.createElement(
-      'div',
-      { className: 'friend-list-wrapper' },
-      _react2.default.createElement('input', { type: 'text',
-        className: 'friend-list__search-field',
-        onChange: this.filterFriends }),
-      _react2.default.createElement(
-        'ul',
-        { className: 'friend-list' },
-        this.state.displayedFriends.map(function (el) {
-          return _react2.default.createElement(FriendListItem, { key: el.id,
-            name: el.name,
-            tel: el.tel,
-            img: el.img });
-        })
-      )
-    );
+    return _this2;
   }
-});
+
+  _createClass(FriendList, [{
+    key: 'filterFriends',
+    value: function filterFriends(e) {
+      var searchQuery = e.target.value.toLowerCase();
+      var displayedFriends = friends.filter(function (item) {
+        var searchValue = item.name.toLowerCase();
+        return searchValue.indexOf(searchQuery) !== -1;
+      });
+
+      this.setState({ displayedFriends: displayedFriends });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'friend-list-wrapper' },
+        _react2.default.createElement('input', { type: 'text',
+          className: 'friend-list__search-field',
+          onChange: this.filterFriends }),
+        _react2.default.createElement(
+          'ul',
+          { className: 'friend-list' },
+          this.state.displayedFriends.map(function (el) {
+            return _react2.default.createElement(FriendListItem, { key: el.id,
+              name: el.name,
+              tel: el.tel,
+              img: el.img });
+          })
+        )
+      );
+    }
+  }]);
+
+  return FriendList;
+}(_react2.default.Component);
 
 _reactDom2.default.render(_react2.default.createElement(FriendList, null), document.querySelector('#root'));
 
