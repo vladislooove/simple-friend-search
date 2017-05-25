@@ -4,8 +4,24 @@
   box-sizing: border-box;
 }
 
+html{
+  font-family: 'Roboto', sans-serif
+}
+
+body{
+  padding: 20px;
+}
+
+.friend-list__title{
+  background-color: rgb(0, 188, 212);
+  color: #fff;
+  padding: 10px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
 .friend-list-wrapper{
-  width: 300px;
+  width: 400px;
   margin: 0 auto;
   box-shadow: rgba(0, 0, 0, 0.25) 0 14px 20px, rgba(0, 0, 0, 0.22) 0 10px 18px
 
@@ -21,7 +37,7 @@
   position: relative;
   display: flex;
   padding: 20px;
-  border-bottom: 1px solid gray
+  border-bottom: 1px solid rgb(232, 232, 232);
 }
 
 .friend-list__data{
@@ -31,6 +47,9 @@
 
 .friend-list__name{
   margin-bottom: 20px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: rgb(121, 121, 121);
 }
 
 .friend-list__img{
@@ -40,8 +59,33 @@
 }
 
 .friend-list__search-field{
+  font-family: Roboto;
+  font-size: 16px;
   width: 100%;
   padding: 10px;
+  border: none;
+  border-bottom: 1px solid rgb(232, 232, 232);
+  outline: none;
+}
+
+.friend-list__search-field+.input-animate{
+  height: 1px;
+  position: relative;
+  margin-top: -1px;
+}
+.friend-list__search-field+.input-animate::after{
+  content: '';
+  height: 1px;
+  position: absolute;
+  left: 0;
+  width: 0;
+  background-color: rgb(0, 188, 212);
+  transition: 300ms width;
+}
+
+.friend-list__search-field:focus+.input-animate::after{
+  width: 100%;
+  transition: 300ms width;
 }
 
 .friend-list__remove {
@@ -78,4 +122,13 @@
 
 .friend-list__remove::after {
     transform: rotate(-45deg);
+}
+
+.friend-list__tel{
+  text-decoration: none;
+  color: #009587;
+}
+
+.friend-list__tel:hover{
+  text-decoration: underline;
 }

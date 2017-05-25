@@ -58,9 +58,14 @@ class FriendList extends React.Component{
   render(){
     return(
       <div className="friend-list-wrapper">
+
+        <div className="friend-list__title">My friends</div>
         <input type="text"
                className="friend-list__search-field"
+               placeholder="Search"
                onChange={this.filterFriends} />
+        <div className="input-animate" />
+        
         <ul className="friend-list">
           {
             this.state.displayedFriends.map(function(el){
@@ -80,6 +85,7 @@ class FriendList extends React.Component{
             }, this)
           }
         </ul>
+      
       </div>
     );
   }

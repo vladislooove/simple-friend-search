@@ -9613,9 +9613,16 @@ var FriendList = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { className: 'friend-list-wrapper' },
+        _react2.default.createElement(
+          'div',
+          { className: 'friend-list__title' },
+          'My friends'
+        ),
         _react2.default.createElement('input', { type: 'text',
           className: 'friend-list__search-field',
+          placeholder: 'Search',
           onChange: this.filterFriends }),
+        _react2.default.createElement('div', { className: 'input-animate' }),
         _react2.default.createElement(
           'ul',
           { className: 'friend-list' },
