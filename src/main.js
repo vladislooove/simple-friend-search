@@ -86,3 +86,4 @@ class FriendList extends React.Component{
 }
 
 ReactDOM.render(<FriendList />, document.querySelector('#root'))
+
