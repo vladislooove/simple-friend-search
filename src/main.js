@@ -27,6 +27,10 @@ var friends = [
 
 class FriendListItem extends React.Component{
 
+  removeFriend(e){
+    console.log(this);
+  }
+
   render() {
     return (
       <li className='friend-list__item'>
@@ -36,6 +40,8 @@ class FriendListItem extends React.Component{
           <div className='friend-list__name'>{this.props.name}</div>
           <a className="friend-list__tel" href={`tel:${this.props.tel.slice(1)}`}>{this.props.tel}</a>
         </div>
+        <button className="friend-list__remove"
+                onClick={this.removeFriend.bind(this)}></button>
       </li>
     );
   }
@@ -65,7 +71,7 @@ class FriendList extends React.Component{
       <div className="friend-list-wrapper">
         <input type="text"
                className="friend-list__search-field"
-               onChange={this.filterFriends} />
+               onChange={this.filterFriends.bind(this)} />
         <ul className="friend-list">
           {
             this.state.displayedFriends.map(function(el){

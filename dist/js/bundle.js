@@ -9580,6 +9580,11 @@ var FriendListItem = function (_React$Component) {
   }
 
   _createClass(FriendListItem, [{
+    key: 'removeFriend',
+    value: function removeFriend(e) {
+      console.log(this);
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -9600,7 +9605,9 @@ var FriendListItem = function (_React$Component) {
             { className: 'friend-list__tel', href: 'tel:' + this.props.tel.slice(1) },
             this.props.tel
           )
-        )
+        ),
+        _react2.default.createElement('button', { className: 'friend-list__remove',
+          onClick: this.removeFriend.bind(this) })
       );
     }
   }]);
@@ -9641,7 +9648,7 @@ var FriendList = function (_React$Component2) {
         { className: 'friend-list-wrapper' },
         _react2.default.createElement('input', { type: 'text',
           className: 'friend-list__search-field',
-          onChange: this.filterFriends }),
+          onChange: this.filterFriends.bind(this) }),
         _react2.default.createElement(
           'ul',
           { className: 'friend-list' },
