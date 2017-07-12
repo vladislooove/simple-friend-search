@@ -1,39 +1,45 @@
 import React from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import { Link, browserHistory } from 'react-router'
 
 class App extends React.Component{
     createItems(){
-        return this.props.test.map((item) => {
+        return this.props.friends.map((el) => {
             return (
-                <b key={item.id}>{item.name}</b>
+                <li className='friend-list__item'
+                    key={el.id}>
+                    <img className="friend-list__img"
+                        src={el.img} />
+                    <div className="friend-list__data">
+                        <div className='friend-list__name'>{el.name}</div>
+                        <a className="friend-list__tel" href={`tel:${el.tel.slice(1)}`}>{el.tel}</a>
+                    </div>
+                    <button className="friend-list__remove"></button>
+                </li>
             )
         })
     }
-    createItems2(){
-        return this.props.testtwo.map((item) => {
-            return (
-                <b key={item.id}>{item.name}</b>
-            )
-        })
-    }
-
 
     render(){
         return (
-            <h2>
-                {this.createItems()}
-                {this.createItems2()}
-            </h2>
+            <div className="friend-list-wrapper">
+                <div className="friend-list__title">My friends</div>
+                <input type="text"
+                    className="friend-list__search-field"
+                    placeholder="Search"/>
+                <div className="input-animate" />
+                
+                <ul className="friend-list">
+                    {this.createItems()}
+                </ul>
+            </div>
         )
     }
 }
 
 function mapStateToProps(state){
     return {
-        test: state.test,
-        testtwo: state.testtwo
+        friends: state.friends,
     }
 }
 
